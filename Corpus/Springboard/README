@@ -1,0 +1,10 @@
+Springboard custom Corpus created by
+
+This corpus contains lists of stop words for several languages.  These
+are high-frequency grammatical words which are usually ignored in text
+retrieval applications.
+
+The English list has been augmented
+https://github.com/nltk/nltk_data/issues/22
+
+
