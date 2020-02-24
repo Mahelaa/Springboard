@@ -43,14 +43,12 @@ class Vocabulary(object):
         return self.word2index[word]
 
 
-voc = Vocabulary('test')
+voc = Vocabulary('love')
 print(voc)
 
 #Load Corpus
 with open('/Users/terminus/Github/Springboard/Corpus/Springboard/defects_electronics', 'r') as f:
     corpus = f.read().splitlines()
-
-print(corpus)
 
 for sent in corpus:
   voc.add_sentence(sent)
