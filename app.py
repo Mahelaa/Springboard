@@ -25,9 +25,9 @@ print("Welcome to springboard defects classifier")
 sample = "i am a  huge fan of the iphone 10. it is an amazing product created by samsung and i hate microsoft"
 product_id = "0528881469"
 review_text = ""
-reviewDefects = ["Heating", "update", "battery"] 
+reviewDefects = ["Heating", "update", "battery"]
 
-#Functions 
+#Functions
 def loadData():
     with open('sample.json') as json_data:
         data = json.load(json_data)
@@ -56,12 +56,7 @@ def sentimentCheck():
     blobS = blob.sentiment.subjectivity
     print(blob.sentiment)
 
-if blob.sentiment.polarity < 0.075:
-    #Run Dictionary search
-    dictionaryCheck()
-    print("Analyzing")
-else:
-  print("Chunk is clean") 
+
 
 def writeBlob():
     with open('%s.json' % product_id,'a') as saveFile:
@@ -70,6 +65,7 @@ def writeBlob():
         saveFile.write(json.dumps("review_polarity :" + str(blobP)))
         saveFile.write(json.dumps("review_subjectivity :" + str(blobS)))
         saveFile.write(json.dumps("review_defects :" + str(reviewDefects)))
+        saveFile.write(json.dumps("review_severity :" + str(severityIndex)))
         saveFile.write("},")
         saveFile.write("\n")
         saveFile.close()

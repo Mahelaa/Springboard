@@ -43,14 +43,17 @@ class Vocabulary(object):
         return self.word2index[word]
 
 
-voc = Vocabulary('love')
+voc = Vocabulary('test')
 print(voc)
 
 #Load Corpus
 with open('/Users/terminus/Github/Springboard/Corpus/Springboard/defects_electronics', 'r') as f:
     corpus = f.read().splitlines()
 
-for sent in corpus:
+sample = "We got this GPS for my husband who is an (OTR) over the road trucker.  Very Impressed with the shipping time, it arrived a few days earlier than expected...  within a week of use however it started freezing up... could of just been a glitch in that unit.  Worked great when it worked!  Will work great for the normal person as well but does have the \"trucker\" option. (the big truck routes - tells you when a scale is coming up ect...)  Love the bigger screen, the ease of use, the ease of putting addresses into memory.  Nothing really bad to say about the unit with the exception of it freezing which is probably one in a million and that's just my luck.  I contacted the seller and within minutes of my email I received a email back with instructions for an exchange! VERY impressed all the way around!"
+
+
+for sent in sample:
   voc.add_sentence(sent)
 
 print('Token 4 corresponds to token:', voc.to_word(4))
@@ -61,7 +64,7 @@ for word in range(voc.num_words):
 
 sent_tkns = []
 sent_idxs = []
-for word in corpus[3].split(' '):
+for word in sample[3].split(' '):
   sent_tkns.append(word)
   sent_idxs.append(voc.to_index(word))
 print(sent_tkns)
