@@ -1,18 +1,22 @@
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from vocabulary import Vocabulary
 
-sample = "i am a  huge fan of the iphone 10. it is an amazing product created by samsung and i hate microsoft"
+global defects_list = []
 
-def dictionaryCheck():
-    #Tokenize
-    sample_token = word_tokenize(sample)
-    sample_token
+def dictionaryCheck(sample_token):
+    with open('/Users/terminus/Github/Springboard/Corpus/Springboard/defects_electronics', 'r') as f:
+        corpus = f.read().splitlines()
 
-    #Remove stop words
-    swords = set(stopwords.words('english'))
-    filtered_sentence = [word for word in sample_token if word not in swords]
-    print(filtered_sentence)
+    #Remove StopWords
+    for word in sample_token:
+        if(word in corpus):
+            print ("Element Exists")
+            print(word)
+            defects_list.append(word)
+        else:
+            print("Non Match")
 
-dictionaryCheck() 
+    print(defects_list)
+    return defects_list
+
