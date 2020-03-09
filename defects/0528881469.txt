@@ -1,1 +1,1 @@
-"['got', 'heating', 'time', 'could', 'glitch', 'coming', 'putting', 'nothing', 'back', 'way', 'got', 'heating', 'time', 'could', 'glitch', 'coming', 'putting', 'nothing', 'back', 'way'],"
+got', 'heating', 'time', 'could', 'glitch', 'coming', 'putting', 'nothing', 'back', 'way', 'got', 'heating', 'time', 'could', 'glitch', 'coming', 'putting', 'nothing', 'back', 'way'

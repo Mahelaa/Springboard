@@ -20,9 +20,8 @@ from nltk.corpus import stopwords
 print("Welcome to springboard defects classifier")
 defects_list = []
 
-
 #Get and load data into these arrays
-product_id = "0528881469"
+product_id = "2456788888"
 
 #Functions
 def loadData():
@@ -81,7 +80,7 @@ def writeBlob():
     #
     blob = sentimentCheck()
     defects_list = dictionaryCheck()
-    sample = loadData
+    sample = loadData()
 
     blobP = blob.sentiment.polarity
     blobS = blob.sentiment.subjectivity
