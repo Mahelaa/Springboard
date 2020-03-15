@@ -6,6 +6,7 @@
 import os
 import json
 import os.path
+import time
 
 import re
 import nltk
@@ -18,16 +19,19 @@ from nltk.corpus import stopwords
 
 
 print("Welcome to springboard defects classifier")
+start_time = time.time()
+#time.sleep(5)
 defects_list = []
 
-#Get and load data into these arrays
-product_id = "2456788888"
+product_id_file = "0528881469"
 
 #Functions
 def loadData():
     with open('./Corpus/Springboard/sample.json') as json_data:
         sample = json.load(json_data)
-        description = sample['Chunk'][0]['reviewText']
+        product_id_file = sample['Chunk'][1]['asin']
+        print(product_id_file)
+        description = sample['Chunk'][1]['reviewText']
         #Alter this to take in datasets
 
     return description
@@ -86,7 +90,7 @@ def writeBlob():
     blobS = blob.sentiment.subjectivity
 
     directory = './defects/'
-    filename =  ('%s.txt' % product_id)
+    filename =  ('%s.txt' % product_id_file)
 
     file_path = os.path.join(directory, filename)
     if not os.path.isdir(directory):
@@ -110,3 +114,4 @@ class app():
     sentimentCheck()
     dictionaryCheck()
     writeBlob()
+    print("--- %s seconds ---" % (time.time() - start_time))
