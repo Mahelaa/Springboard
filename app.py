@@ -1,4 +1,4 @@
-#  Version 1.0 Springboard defects classifier
+# Version 1.0 Springboard defects classifier
 # API https://www.amazon.com/reviews/iframe?akid=[AWS Access Key ID]&asin=0316067938&exp=2011-08-01T17%3A54%3A07Z&linkCode=xm2&summary=0&tag=ws&truncate=256&v=2&sig=[Signature]
 
 #Imports 
@@ -12,6 +12,7 @@ import re
 import nltk
 import numpy as np
 import pandas as pd
+import csv
 
 from textblob import TextBlob
 from nltk.tokenize import word_tokenize
@@ -23,15 +24,17 @@ start_time = time.time()
 #time.sleep(5)
 defects_list = []
 
+#fix
 product_id_file = "0528881469"
 
 #Functions
 def loadData():
+    #set input statement
     with open('./Corpus/Springboard/sample.json') as json_data:
         sample = json.load(json_data)
-        product_id_file = sample['Chunk'][1]['asin']
+        product_id_file = sample['Chunk'][2]['asin']
         print(product_id_file)
-        description = sample['Chunk'][1]['reviewText']
+        description = sample['Chunk'][2]['reviewText']
         #Alter this to take in datasets
 
     return description
@@ -70,7 +73,7 @@ def dictionaryCheck():
 
     sample_token = tokenize()
 
-    #Remove StopWords
+    #dictionary check and classify
     for word in sample_token:
         if(word in corpus):
             defects_list.append(word)
@@ -90,19 +93,22 @@ def writeBlob():
     blobS = blob.sentiment.subjectivity
 
     directory = './defects/'
-    filename =  ('%s.txt' % product_id_file)
+    filename =  ('%s.csv' % product_id_file)
 
     file_path = os.path.join(directory, filename)
+    #change condition to check file
     if not os.path.isdir(directory):
         os.mkdir(directory)
-        file = open(file_path, "w")
-        file.write(json.dumps("review_defects :" + str(defects_list)))
-        file.close()
+        with open(file_path, mode='w') as defects_write:
+            defects_append= csv.writer(defects_write, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            defects_append.writerow(defects_list)
+            print("New file created!")
     else:
-        file = open(file_path, "a")
-        file.write(json.dumps(str(defects_list) + ","))
-        file.close()
-        print("Appended")
+        with open(file_path, mode='a') as defects_write:
+            defects_append= csv.writer(defects_write, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            defects_append.writerow(defects_list)
+            print("Product defects appended")
+
 
 #Run class
 
