@@ -24,8 +24,7 @@ start_time = time.time()
 #time.sleep(5)
 defects_list = []
 
-#fix
-product_id_file = ""
+
 dataset_loop = 0
 
 #Functions
@@ -33,12 +32,18 @@ def loadData():
     #set input statement
     with open('./Corpus/Springboard/sample.json') as json_data:
         sample = json.load(json_data)
-        product_id_file = sample['Chunk'][dataset_loop]['asin']
-        print(product_id_file)
         description = sample['Chunk'][dataset_loop]['reviewText']
         #Alter this to take in datasets
 
     return description
+
+def loadData2():
+    #set input statement
+    with open('./Corpus/Springboard/sample.json') as json_data:
+        sample = json.load(json_data)
+        product_id_file = sample['Chunk'][dataset_loop]['asin']
+
+    return product_id_file
 
 def caseConvert():
     sample = loadData()
@@ -89,6 +94,7 @@ def writeBlob():
     blob = sentimentCheck()
     defects_list = dictionaryCheck()
     sample = loadData()
+    product_id_file = loadData2()
 
     blobP = blob.sentiment.polarity
     blobS = blob.sentiment.subjectivity
