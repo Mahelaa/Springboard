@@ -23,8 +23,7 @@ print("Welcome to springboard defects classifier")
 start_time = time.time()
 #time.sleep(5)
 defects_list = []
-
-
+product_id_file = ""
 dataset_loop = 0
 
 #Functions
@@ -121,8 +120,8 @@ def writeBlob():
 
 class app():
 
-    #for loop to control the dataset values
-    while dataset_loop < 10 :
+    while dataset_loop < 10:
+
         loadData()
         caseConvert()
         tokenize()
